@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EMC</title>
+    <!-- font awsome link -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+      integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="shortcut icon" href="./image/favicon.jpg" type="image/x-icon" />
+    <!-- tailwind and dasi ui link -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@3.6.3/dist/full.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <style>
+    .spinContaier {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 50vh;
+    }
+    .spinner {
+      width: 60px;
+      height: 60px;
+      border: 6px solid rgba(0, 0, 0, 0.1);
+      border-left-color: #3498db;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+  </style>
+  <body>
+    <!-- navbar section  -->
+    <header class="bg-emerald-200 fixed left-0 right-0 z-40">
+      <div class="container mx-auto">
+        <div class="navbar">
+          <div class="flex-1">
+            <a class="btn btn-ghost normal-case text-xl font-mono text-red-300"
+              >Rafa</a
+            >
+          </div>
+          <div class="flex-none">
+            <div class="dropdown dropdown-end">
+              <label tabindex="0" class="btn btn-ghost btn-circle">
+                <div class="indicator">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-5 w-5"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
+                    />
+                  </svg>
+                  <span id="cardCount" class="badge badge-sm indicator-item"
+                    >0</span
+                  >
+                </div>
+              </label>
+              <div
+                tabindex="0"
+                class="mt-3 z-[1] card card-compact dropdown-content w-80 bg-slate-300 overflow-auto shadow"
+              >
+                <div class="p-5 space-y-4" id="addToCardContainer">
+                  <div class="flex justify-between items-center">
+                    <p>Total : <span id="price">00</span></p>
+                    <button
+                      class="btn btn-xs btn-active btn-secondary capitalize"
+                    >
+                      buy now
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="dropdown dropdown-end">
+              <label tabindex="0" class="btn btn-ghost btn-circle avatar">
+                <div class="w-10 rounded-full">
+                  <img src="./image/account.png" />
+                </div>
+              </label>
+              <ul
+                tabindex="0"
+                class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
+              >
+                <li>
+                  <a class="justify-between">
+                    Profile
+                    <span class="badge">New</span>
+                  </a>
+                </li>
+                <li><a>Settings</a></li>
+                <li><a>Logout</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- modal -->
+    </header>
+    <!-- banner section  -->
+
+    <main>
+      <div class="container mx-auto">
+        <div class="hero min-h-screen bg-base-200">
+          <div
+            class="hero-content flex-col lg:flex-row-reverse items-center lg:items-stretch"
+          >
+            <img
+              src="./image/b1.png"
+              class="lg:max-w-3xl md:max-w-2xl max-w-full lg:rounded-lg lg:w-[40rem] md:w-[30rem] w-full"
+              alt="Product Image"
+            />
+            <div
+              class="flex flex-col justify-center items-center lg:items-start lg:pl-10 py-6 lg:py-0"
+            >
+              <h1
+                class="text-2xl lg:text-4xl font-semibold text-center lg:text-left mb-3"
+              >
+                Trade-In Offer
+              </h1>
+              <p
+                class="text-xl lg:text-4xl font-bold text-center lg:text-left mb-6"
+              >
+                Super Values Await<br />
+                on All Products
+              </p>
+              <p class="text-gray-500 text-center lg:text-left mb-3">
+                Save More with 50% Discount Coupons
+              </p>
+              <button
+                class="btn btn-secondary bg-transparent text-gray-600 hover:text-white capitalize"
+              >
+                Shop Now
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- card section  -->
+
+      <div class="container mx-auto">
+        <div class="my-16 space-y-2">
+          <h1 class="text-3xl capitalize font-bold mt-4 text-center">
+            feature Of product
+          </h1>
+          <p class="capitalize text-center">New collection</p>
+        </div>
+        <!-- spinnar -->
+        <div id="spinContaier" class="spinContaier">
+          <div class="spinner" id="spiner"></div>
+        </div>
+        <div
+          id="cardContainer"
+          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"
+        ></div>
+      </div>
+    </main>
+    <script src="./index.js"></script>
+  </body>
+</html>
