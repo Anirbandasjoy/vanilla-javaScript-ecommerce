@@ -1,6 +1,9 @@
+const buyNow = document.getElementById("buyNow");
+buyNow.disabled = true;
 const loadProductData = async () => {
   const spiner = document.getElementById("spiner");
   const spinContaier = document.getElementById("spinContaier");
+
   spiner.style.display = "block";
   try {
     const res = await fetch("https://fakestoreapi.com/products");
@@ -56,6 +59,7 @@ const displayData = (data) => {
 
 let cardCount = 0;
 let totalCount = 0;
+
 const addToCard = async (id) => {
   try {
     const res = await fetch(`https://fakestoreapi.com/products/${id}`);
@@ -81,6 +85,10 @@ const addToCard = async (id) => {
     const price = getId("price");
     totalCount = totalCount + data.price;
     price.innerText = totalCount.toFixed(2);
+
+    if (totalCount > 0) {
+      buyNow.disabled = false;
+    }
 
     cardCount++;
     const cardCountElement = getId("cardCount");
@@ -118,3 +126,12 @@ const showToast = (message) => {
     toastContainer.style.left = "-100px"; // Slide out to the left
   }, 3000);
 };
+
+// buy now
+
+getId("buyNow").addEventListener("click", () => {
+  showToast("Suceessfull Buying");
+  setTimeout(() => {
+    location.reload();
+  }, 2000);
+});
