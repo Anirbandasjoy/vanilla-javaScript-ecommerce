@@ -37,8 +37,9 @@ const displayData = (data) => {
            10
          )} <div class="badge badge-secondary">$${product.price}</div></h2>
 
-       <i class="fa-solid fa-arrow-right btn rounded-full"></i>
-    
+   <span onclick="showDetail(${product.id}); my_modal_3.showModal();">
+  <i class="fa-solid fa-arrow-right btn rounded-full"></i>
+</span>
     </div>
     <p class="text-gray-500">${product.description.slice(0, 60)}</p>
     <div class="card-actions justify-end">
@@ -55,6 +56,40 @@ const displayData = (data) => {
     `;
     cardContainer.appendChild(div);
   });
+};
+
+// show details
+const showDetail = async (id, modal) => {
+  const modalBody = getId("modalBody");
+  try {
+    const res = await fetch(`https://fakestoreapi.com/products/${id}`);
+    if (!res.ok) {
+      throw new Error("Failed to fetch data");
+    }
+    const data = await res.json();
+    const div = document.createElement("div");
+    div.innerHTML = `
+     <div class="card lg:card-side">
+  <div class="flex-1">
+   <figure><img class="w-80 h-80" src=${data.image} alt=${data.title}/></figure>
+  </div>
+  <div class="card-body flex-1">
+    <h2 class="card-title font-bold">${data.title}</h2>
+    <p class="text-gray-400">${data.description}</p> 
+  </div>
+</div>
+    `;
+    modalBody.appendChild(div);
+    getId("modalBtn").addEventListener("click", () => {
+      div.innerHTML = "";
+    });
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
+const goBack = async () => {
+  loadProductData();
 };
 
 let cardCount = 0;
