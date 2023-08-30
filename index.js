@@ -67,17 +67,15 @@ const addToCard = async (id) => {
     const addToCardContainer = getId("addToCardContainer");
     const div = document.createElement("div");
     div.innerHTML = `
-    <div class="flex justify-between items-center ">
-        <div class="avatar">
+   <div id="cartItem_${data.id}" class="flex justify-between items-center" data-price="${data.price}">
+    <div class="avatar">
         <div class="w-8 rounded-full ring ring-primary ring-offset-base-100 ring-offset-1">
             <img src=${data.image} />
         </div>
-        </div>
-        <p>$${data.price}</p>
-
-        <i class="fa-solid fa-delete-left"></i>
-    
     </div>
+    <p>$${data.price}</p>
+    <i class="fa-solid fa-delete-left btn" onclick="removeFromCart('${data.id}')"></i>
+</div>
     
     `;
     addToCardContainer.appendChild(div);
@@ -98,6 +96,28 @@ const addToCard = async (id) => {
     console.log(error.message);
   }
 };
+
+// remove card element
+
+const removeFromCart = (id) => {
+  const cartItem = getId(`cartItem_${id}`);
+  const itemPrice = parseFloat(cartItem.dataset.price);
+  cartItem.remove();
+
+  totalCount -= itemPrice;
+  price.innerText = totalCount.toFixed(2);
+
+  cardCount--;
+  const cardCountElement = getId("cardCount");
+  cardCountElement.innerText = cardCount;
+
+  showToast("deleted successfully");
+
+  if (cardCount === 0) {
+    buyNow.disabled = true;
+  }
+};
+
 loadProductData();
 const getId = (id) => {
   return document.getElementById(id);
