@@ -44,6 +44,35 @@
         transform: rotate(360deg);
       }
     }
+
+    .toast-container {
+      position: fixed;
+      top: 101.2%;
+      transform: translateY(-80%);
+      left: -200px;
+      transition: left 0.3s ease-in-out;
+      z-index: 1000;
+    }
+
+    .toast {
+      display: flex;
+      align-items: center;
+      padding: 10px 20px;
+      margin: 10px;
+      border-radius: 8px;
+      background-color: #55e4db;
+      color: #fff;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    }
+
+    .toast-icon {
+      margin-right: 10px;
+      font-size: 18px;
+    }
+
+    .toast-message {
+      font-size: 14px;
+    }
   </style>
   <body>
     <!-- navbar section  -->
@@ -84,7 +113,7 @@
               >
                 <div class="p-5 space-y-4" id="addToCardContainer">
                   <div class="flex justify-between items-center">
-                    <p>Total : <span id="price">00</span></p>
+                    <p class="font-bold">Total : $<span id="price">00</span></p>
                     <button
                       class="btn btn-xs btn-active btn-secondary capitalize"
                     >
@@ -118,11 +147,14 @@
         </div>
       </div>
 
+      <div id="toastContainer" class="toast-container left"></div>
+
       <!-- modal -->
     </header>
     <!-- banner section  -->
 
     <main>
+      <div class="text-center"></div>
       <div class="container mx-auto">
         <div class="hero min-h-screen bg-base-200">
           <div
