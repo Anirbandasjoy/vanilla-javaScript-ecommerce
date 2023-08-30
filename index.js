@@ -10,6 +10,7 @@ const loadProductData = async () => {
     const data = await res.json();
     displayData(data);
   } catch (error) {
+    getId("cardContainer").innerText = error.message;
     console.log(error.message);
   } finally {
     spiner.style.display = "none";
