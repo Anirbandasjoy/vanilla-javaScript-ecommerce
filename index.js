@@ -23,6 +23,9 @@ const loadProductData = async () => {
 
 const displayData = (data) => {
   const cardContainer = getId("cardContainer");
+  const sliceData = data.slice(0, 10);
+  console.log(sliceData.length);
+
   data.map((product) => {
     const div = document.createElement("div");
     div.innerHTML = `
@@ -170,15 +173,13 @@ const showToast = (message) => {
   `;
   toastContainer.appendChild(toast);
 
-  // Delay for a short period before showing the toast
   setTimeout(() => {
-    toastContainer.style.left = "13rem"; // Slide in from the left
+    toastContainer.style.left = "13rem";
   }, 100);
 
-  // Remove the toast after a few seconds
   setTimeout(() => {
     toast.remove();
-    toastContainer.style.left = "-100px"; // Slide out to the left
+    toastContainer.style.left = "-100px";
   }, 3000);
 };
 
@@ -186,7 +187,7 @@ const showToast = (message) => {
 
 getId("buyNow").addEventListener("click", () => {
   showToast("Suceessfull Buying");
-  setTimeout(() => {
+  getId("closeBtn").addEventListener("click", () => {
     location.reload();
-  }, 2000);
+  });
 });
